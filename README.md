@@ -1,6 +1,6 @@
-# Test Rail CSV Upload App
+# Test Rail CSV Import App
 
-Test Rail CSV Upload
+Test Rail CSV Import
 
 ## USAGE
 
