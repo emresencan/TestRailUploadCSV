@@ -7,7 +7,7 @@ import javax.swing.*;
 import java.nio.charset.Charset;
 import java.util.Locale;
 
-public class Base extends JFrame {
+public class Base extends  Library {
 
     public static String os = System.getProperty("os.name");
 

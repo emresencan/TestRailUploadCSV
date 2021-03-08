@@ -5,7 +5,7 @@ import com.codeborne.selenide.WebDriverRunner;
 
 import java.util.concurrent.TimeUnit;
 
-public class Library extends Base {
+public class Library {
 
     public static void closeFail() {
         System.out.println("Close Webdriver");
