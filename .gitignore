@@ -13,6 +13,8 @@
 .idea/*
 /out/"
 .idea/replstate.xml
+/workspace.xml
+/shelf/
 
 #Log4j
 Log4j/log4j-application.log
