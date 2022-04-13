@@ -103,8 +103,8 @@ public class TestRailApp extends Base implements ActionListener {
 	}
 
 	private static void createLoginButton() {
-		loginButton = new JButton("Login");
-		loginButton.setBounds(180, 80, 100, 25);
+		loginButton = new JButton("Single Sign On");
+		loginButton.setBounds(100,80, 180, 25);
 		loginButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -122,7 +122,7 @@ public class TestRailApp extends Base implements ActionListener {
 	private static void createPasswordText() {
 		passwordText = new JPasswordField();
 		passwordText.setBounds(100, 50, 180, 25);
-		passwordText.setVisible(true);
+		passwordText.setEnabled(false);
 		jPanel.add(passwordText);
 	}
 
@@ -135,7 +135,7 @@ public class TestRailApp extends Base implements ActionListener {
 	private static void createUserNameText() {
 		userNameText = new JTextField();
 		userNameText.setBounds(100, 20, 180, 25);
-		userNameText.setVisible(true);
+		userNameText.setEnabled(false);
 		jPanel.add(userNameText);
 	}
 
