@@ -1,9 +1,9 @@
 Title,Reviewer,Priority,Section,Suite,Type,Test Level,Template,Automation Status,Reviewer Status,Steps,Expected Result
-Test Case - 1,Elif Ozturk Almaz,Critical,Dashboad Test,Selected Suit,Functional,System testing,Detail Test Cases(Steps),Automated only,Approved,"Open AMD application
+Test Case - 1,Elif Ozturk Almaz,Critical,Dashboad Test,Selected Suit,Functional,System testing,Detail Test Cases(Steps),Automated only,Approved,"Open AMD application,
 ",Dasboard page should be open
-Test Case - 1,Elif Ozturk Almaz,Critical,Dashboad Test,Selected Suit,Functional,System testing,Detail Test Cases(Steps),Automated only,Approved,"Click on + button to add aspect","Add aspect pop up should be opened
+Test Case - 1,Elif Ozturk Almaz,Critical,Dashboad Test,Selected Suit,Functional,System testing,Detail Test Cases(Steps),Automated only,Approved,"Click on + button to add aspect,","Add aspect pop up should be opened
 "
-Test Case - 2,Elif Ozturk Almaz,Critical,Dashboad Test,Selected Suit,Functional,System testing,Detail Test Cases(Steps),Automated only,Approved,"Open AMD application
+Test Case - 2,Elif Ozturk Almaz,Critical,Dashboad Test,Selected Suit,Functional,System testing,Detail Test Cases(Steps),Automated only,Approved,"Open AMD application,
 ",Dasboard page should be open
-Test Case - 2,Elif Ozturk Almaz,Critical,Dashboad Test,Selected Suit,Functional,System testing,Detail Test Cases(Steps),Automated only,Approved,"Click on + button to add aspect","Add aspect pop up should be opened
+Test Case - 2,Elif Ozturk Almaz,Critical,Dashboad Test,Selected Suit,Functional,System testing,Detail Test Cases(Steps),Automated only,Approved,"Click on + button to add aspect,","Add aspect pop up should be opened
 "
