@@ -191,7 +191,9 @@ public class Dashboard extends Library {
 			DRP_Fields_CSS2.first().scrollIntoView(true);
 			for (SelenideElement el : DRP_Fields_CSS2) {
 				String text = el.$("td:nth-child(1)").getText();
-				boolean is = el.$(".field select").is(Condition.text(text));
+				if(text.equals("Yusuf Emre ?encan"))
+					text="Yusuf Emre Şencan";
+				boolean is = el.$(".field select").is(Condition.textCaseSensitive(text));
 				if (is) {
 					waitMiliSeconds(300);
 					el.$(".field select").selectOption(text);

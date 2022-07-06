@@ -63,9 +63,9 @@ public class TestRailApp extends Base implements ActionListener {
 				jPanel.setLayout(null);
 
 				createUserNameLabel();
-				createUserNameText();
+//				createUserNameText();
 				createPasswordLabel();
-				createPasswordText();
+//				createPasswordText();
 				createLoginButton();
 
 				jFrame.setVisible(true);
@@ -104,13 +104,15 @@ public class TestRailApp extends Base implements ActionListener {
 
 	private static void createLoginButton() {
 		loginButton = new JButton("Single Sign On");
-		loginButton.setBounds(100,80, 180, 25);
+		int s = loginButton.getPreferredSize().width;
+		loginButton.setBounds(48,80, 180, 25);
+
 		loginButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				driverSetUp();
-				userName = userNameText.getText();
-				password = String.valueOf(passwordText.getPassword());
+				userName =""; // userNameText.getText();
+				password = ""; //String.valueOf(passwordText.getPassword());
 				loginTestRail(userName, password);
 				second();
 			}
@@ -127,8 +129,10 @@ public class TestRailApp extends Base implements ActionListener {
 	}
 
 	private static void createPasswordLabel() {
-		passwordLabel = new JLabel("Password:");
-		passwordLabel.setBounds(10, 50, 100, 25);
+		passwordLabel = new JLabel("Log into Your Account");
+		passwordLabel.setFont(new Font("Tahoma",Font.PLAIN,11));
+		int s = passwordLabel.getPreferredSize().width;
+		passwordLabel.setBounds((300-s)/2, 50, 100, 25);
 		jPanel.add(passwordLabel);
 	}
 
@@ -140,8 +144,14 @@ public class TestRailApp extends Base implements ActionListener {
 	}
 
 	private static void createUserNameLabel() {
-		userNameLabel = new JLabel("User Name:");
-		userNameLabel.setBounds(10, 20, 100, 25);
+		userNameLabel = new JLabel("TestRail QA");
+		userNameLabel.setFont(new Font("Verdana",Font.BOLD,12));
+		int s = userNameLabel.getPreferredSize().width;
+		userNameLabel.setBounds((300-s)/2-4, 20, 100, 25);
+
+//		Font f = userNameLabel.getFont();
+//		userNameLabel.setFont(f.deriveFont(f.getSize2D()));
+//		userNameLabel.setFont(f.deriveFont(f.getStyle()|Font.BOLD));
 		jPanel.add(userNameLabel);
 	}
 
