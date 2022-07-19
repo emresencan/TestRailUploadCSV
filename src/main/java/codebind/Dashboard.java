@@ -193,6 +193,8 @@ public class Dashboard extends Library {
 				String text = el.$("td:nth-child(1)").getText();
 				if(text.equals("Yusuf Emre ?encan"))
 					text="Yusuf Emre Şencan";
+				if(text.equals("Zehra Ate?"))
+					text="Zehra Ates";
 				boolean is = el.$(".field select").is(Condition.textCaseSensitive(text));
 				if (is) {
 					waitMiliSeconds(300);

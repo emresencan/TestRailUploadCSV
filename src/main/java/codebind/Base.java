@@ -30,7 +30,7 @@ public class Base extends Library {
 		Configuration.timeout = timeout * 1000;
 		Configuration.startMaximized = true;
 		Configuration.pollingInterval = 100;
-		Configuration.headless = true;
+		Configuration.headless = false;
 		WebDriverRunner.addListener(new DriverEventListener());
 
 		sysProperties += "\nremote: " + Configuration.remote;
