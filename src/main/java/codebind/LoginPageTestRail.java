@@ -31,7 +31,7 @@ public class LoginPageTestRail extends Library {
 
 	public LoginPageTestRail login(String username, String password) {
 		try {
-			Configuration.baseUrl = "https://testrail.swb.siemens.de";
+			Configuration.baseUrl = "https://testrail.ppmd.siemens.net";
 			open();
 			waitSeconds(1);
 //			TXT_USERNAME_ID.sendKeys(username);
