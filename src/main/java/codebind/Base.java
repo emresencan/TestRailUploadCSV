@@ -41,6 +41,7 @@ public class Base extends Library {
 //		WebDriverRunner.addListener(new WebDriverListener());
 		WebDriverRunner.addListener(new DriverEventListener());
 
+
 		sysProperties += "\nremote: " + Configuration.remote;
 		sysProperties += "\nbrowser: " + Configuration.browser;
 		sysProperties += "\nbrowser.version: " + Configuration.browserVersion;

@@ -2,6 +2,7 @@ package codebind;
 
 import java.sql.Timestamp;
 import java.util.Arrays;
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.By;
@@ -80,14 +81,16 @@ public class DriverEventListener implements WebDriverEventListener {
 		 * By loadingLocator = By.cssSelector("div[style*='display: block;'] .loading");
 		 * long timeout = Configuration.timeout / 1000;
 		 */
-		waitMiliSeconds(50);
+		waitMiliSeconds(150);
+//		waitForLoadingJS(driver,120);
 		return;
 
 	}
 
 	@Override
 	public void afterFindBy(By by, WebElement element, WebDriver driver) {
-		// waitMiliSeconds(100);
+//		waitForLoadingJS(driver,120);
+		waitMiliSeconds(150);
 		if (log) {
 			Timestamp timestamp = new Timestamp(System.currentTimeMillis());
 			System.out.println(timestamp + "    found element: " + by.toString());
@@ -96,12 +99,13 @@ public class DriverEventListener implements WebDriverEventListener {
 
 	@Override
 	public void beforeClickOn(WebElement element, WebDriver driver) {
-		// waitMiliSeconds(100);
+//		waitForLoadingJS(driver,120);
 	}
 
 	@Override
 	public void afterClickOn(WebElement element, WebDriver driver) {
-		// waitMiliSeconds(100);
+//		waitForLoadingJS(driver,120);
+		waitMiliSeconds(150);
 		if (log) {
 			Timestamp timestamp = new Timestamp(System.currentTimeMillis());
 			System.out.println(timestamp + "    clicked: " + element.toString());
@@ -110,7 +114,7 @@ public class DriverEventListener implements WebDriverEventListener {
 
 	@Override
 	public void beforeChangeValueOf(WebElement element, WebDriver driver, CharSequence[] keysToSend) {
-		waitMiliSeconds(150);
+//		waitForLoadingJS(driver,120);
 		if (log) {
 			Timestamp timestamp = new Timestamp(System.currentTimeMillis());
 			System.out.println(timestamp + "    Change value: " + Arrays.toString(keysToSend) + "    element: "
@@ -120,6 +124,7 @@ public class DriverEventListener implements WebDriverEventListener {
 
 	@Override
 	public void afterChangeValueOf(WebElement element, WebDriver driver, CharSequence[] keysToSend) {
+//		waitForLoadingJS(driver,120);
 		if (log) {
 			Timestamp timestamp = new Timestamp(System.currentTimeMillis());
 			System.out.println(timestamp + "    value chaged: " + element.toString());
@@ -179,12 +184,12 @@ public class DriverEventListener implements WebDriverEventListener {
 
 	/*
 	 * @Override public <X> void beforeGetScreenshotAs(OutputType<X> outputType) {
-	 * 
+	 *
 	 * }
-	 * 
+	 *
 	 * @Override public <X> void afterGetScreenshotAs(OutputType<X> outputType, X x)
 	 * {
-	 * 
+	 *
 	 * }
 	 */
 

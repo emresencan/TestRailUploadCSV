@@ -15,12 +15,15 @@ public class TestRailApp extends Base implements ActionListener {
 	public static String userName = null;
 	public static String password = null;
 	public static String SUIT_NAME = null;
+	public static String SECTION_NAME = null;
 	public static String PROJECT_NAME = null;
 	public static String path = null;
 	public static List<String> paths = new ArrayList<String>();
 	public static List<String> suitsName = new ArrayList<String>();
+	public static List<String> sectionsName = new ArrayList<String>();
 	public static JComboBox project = null;
 	public static JComboBox suit = null;
+	public static JComboBox section = null;
 	public static List<String> names;
 
 	// main 2
@@ -83,7 +86,7 @@ public class TestRailApp extends Base implements ActionListener {
 				jFrame.setVisible(false);
 				jPanel2 = new JPanel();
 				frame = new JFrame("TestRailApp");
-				frame.setSize(360, 250);
+				frame.setSize(360, 290);
 				frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 				frame.add(jPanel2);
 				jPanel2.setLayout(null);
@@ -92,6 +95,8 @@ public class TestRailApp extends Base implements ActionListener {
 				createProjectComboBox();
 				createSuiteLabel();
 				creatSutieComboBox();
+				createSectionLabel();
+				creatSectionComboBox();
 				createBrowseButton();
 				createExcellPathText();
 				createUploadButton();
@@ -161,7 +166,7 @@ public class TestRailApp extends Base implements ActionListener {
 
 	private static void createProgressBar() {
 		progressBar = new JProgressBar(0, 100);
-		progressBar.setBounds(20, 170, 310, 25);
+		progressBar.setBounds(20, 210, 310, 25);
 		progressBar.setValue(0);
 		progressBar.setVisible(true);
 		progressBar.setStringPainted(true);
@@ -170,7 +175,7 @@ public class TestRailApp extends Base implements ActionListener {
 
 	private static void createUploadButton() {
 		uploadButton = new JButton("Upload");
-		uploadButton.setBounds(230, 140, 100, 25);
+		uploadButton.setBounds(230, 180, 100, 25);
 		uploadButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent ac) {
@@ -216,14 +221,14 @@ public class TestRailApp extends Base implements ActionListener {
 
 	private static void createExcellPathText() {
 		textField = new JFormattedTextField();
-		textField.setBounds(130, 110, 200, 25);
+		textField.setBounds(130, 150, 200, 25);
 		textField.setEnabled(false);
 		jPanel2.add(textField);
 	}
 
 	private static void createBrowseButton() {
 		browse = new JButton("Browse");
-		browse.setBounds(20, 110, 100, 25);
+		browse.setBounds(20, 150, 100, 25);
 		browse.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent ac) {
@@ -254,6 +259,35 @@ public class TestRailApp extends Base implements ActionListener {
 
 	}
 
+	private static void creatSectionComboBox() {
+		section = new JComboBox();
+		section.setBounds(130, 100, 200, 25);
+		section.setActionCommand("false");
+		section.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				if (Boolean.parseBoolean(section.getActionCommand())) {
+					try {
+						SECTION_NAME = section.getSelectedItem().toString();
+						if (SECTION_NAME.equals(""))
+							JOptionPane.showMessageDialog(null, "Please select section.", "Warning",
+									JOptionPane.WARNING_MESSAGE);
+					} catch (Exception ex) {
+						JOptionPane.showMessageDialog(null, "Something went wrong while select suit!!!", "Error", -1);
+						closeFail();
+					}
+				}
+			}
+		});
+		jPanel2.add(section);
+	}
+
+	private static void createSectionLabel() {
+		JLabel sectionLabel = new JLabel("Section Name");
+		sectionLabel.setBounds(20, 100, 100, 25);
+		jPanel2.add(sectionLabel);
+	}
+
 	private static void creatSutieComboBox() {
 		suit = new JComboBox();
 		suit.setBounds(130, 60, 200, 25);
@@ -265,13 +299,21 @@ public class TestRailApp extends Base implements ActionListener {
 					try {
 						SUIT_NAME = suit.getSelectedItem().toString();
 						if (SUIT_NAME.equals(""))
-							JOptionPane.showMessageDialog(null, "Please select suit.", "Warning",
+							JOptionPane.showMessageDialog(null, "Please select section.", "Warning",
 									JOptionPane.WARNING_MESSAGE);
 						else {
 							dashboard.findSuitsAndClick(SUIT_NAME);
+							section.setEnabled(true);
+							sectionsName = sections();
+							section.removeAllItems();
+							section.addItem("");
+							for (String text : sectionsName) {
+								section.addItem(text);
+							}
+							section.setActionCommand("true");
 						}
 					} catch (Exception ex) {
-						JOptionPane.showMessageDialog(null, "Something went wrong while select suit!!!", "Error", -1);
+						JOptionPane.showMessageDialog(null, "Something went wrong while select section!!!", "Error", -1);
 						closeFail();
 					}
 				}
@@ -335,6 +377,9 @@ public class TestRailApp extends Base implements ActionListener {
 		return new Dashboard().findTestSuits();
 	}
 
+	public static List<String> sections() {
+		return new Dashboard().findTestSections();
+	}
 	public static List<String> projects() {
 		return new Dashboard().findProjects();
 	}

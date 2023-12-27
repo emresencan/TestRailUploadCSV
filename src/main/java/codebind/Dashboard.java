@@ -1,7 +1,8 @@
 package codebind;
 
-import static com.codeborne.selenide.Selenide.$;
-import static com.codeborne.selenide.Selenide.$$;
+import static codebind.TestRailApp.SECTION_NAME;
+import static codebind.TestRailApp.SUIT_NAME;
+import static com.codeborne.selenide.Selenide.*;
 
 import java.awt.*;
 import java.util.ArrayList;
@@ -14,6 +15,7 @@ import javax.swing.*;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
+import com.codeborne.selenide.WebDriverRunner;
 
 public class Dashboard extends Library {
 
@@ -23,6 +25,8 @@ public class Dashboard extends Library {
 			".table.summary.summary-auto .row.project.flex-projects-row .summary-title.text-ppp");
 	private final ElementsCollection TABLE_SUITS_CSS = $$(".table .row.flex-suites-row .summary-title.text-ppp");
 	private final ElementsCollection TABLE_SUITNAMES_CSS = $$(".table .row.flex-suites-row .summary-title.text-ppp a");
+	private final ElementsCollection LIST_SECTION_CSS = $$(".jstree-open li");
+	private final ElementsCollection LIST_SECTIONSAMES_CSS = $$(".jstree-open li span");
 	private final ElementsCollection DRP_SUITS_CSS = $$("#importDropdown ul li");
 	private final SelenideElement BTN_IMPORT_CSS = $(".icon-import");
 	private final SelenideElement TXT_IMPORTCSVFILE_CSS = $("#importCsvFile");
@@ -100,6 +104,28 @@ public class Dashboard extends Library {
 		return names;
 	}
 
+	public List<String> findTestSections() {
+		waitSeconds(5);
+		List<String> names = null;
+		try {
+			ListIterator<SelenideElement> elemenet = null;
+			names = new ArrayList<String>();
+			elemenet = LIST_SECTIONSAMES_CSS.listIterator();
+
+			while (elemenet.hasNext()) {
+				String text = elemenet.next().getText();
+
+				if(!text.equals(""))
+					names.add(text);
+			}
+		} catch (Exception e) {
+			Toolkit.getDefaultToolkit().beep();
+			JOptionPane.showMessageDialog(null, "Something went wrong !!!", "Error", -1);
+			closeFail();
+		}
+		return names;
+	}
+
 	public Dashboard findSuitsAndClick(String suitName) {
 		if (TABLE_SUITNAMES_CSS.first().isDisplayed()) {
 			try {
@@ -111,8 +137,31 @@ public class Dashboard extends Library {
 			}
 		} else {
 			BTN_TESTSUITS_CSS.click();
+			waitSeconds(3);
 			try {
 				TABLE_SUITS_CSS.filterBy(Condition.text(suitName)).first().$("a").click();
+			} catch (Exception e) {
+				Toolkit.getDefaultToolkit().beep();
+				JOptionPane.showMessageDialog(null, "Something went wrong !!!", "Error", -1);
+				closeFail();
+			}
+		}
+		return this;
+	}
+
+	public Dashboard findSectionsAndClick(String sectinName) {
+		if (LIST_SECTIONSAMES_CSS.first().isDisplayed()) {
+			try {
+				LIST_SECTION_CSS.filterBy(Condition.text(sectinName)).first().$("span").click();
+			} catch (Exception e) {
+				Toolkit.getDefaultToolkit().beep();
+				JOptionPane.showMessageDialog(null, "Something went wrong !!!", "Error", -1);
+				closeFail();
+			}
+		} else {
+			BTN_TESTSUITS_CSS.click();
+			try {
+				TABLE_SUITS_CSS.filterBy(Condition.text(sectinName)).first().$("a").click();
 			} catch (Exception e) {
 				Toolkit.getDefaultToolkit().beep();
 				JOptionPane.showMessageDialog(null, "Something went wrong !!!", "Error", -1);
@@ -151,8 +200,8 @@ public class Dashboard extends Library {
 		try {
 			TXT_IMPORTCSVFILE_CSS.sendKeys(pathCSV);
 			waitSeconds(2);
-			if ((DRP_importCsvImportTo_CSS.is(Condition.text("Functional Tests"))))
-				DRP_importCsvImportTo_CSS.selectOption("Functional Tests");
+			if ((DRP_importCsvImportTo_CSS.is(Condition.matchText(SECTION_NAME))))
+				DRP_importCsvImportTo_CSS.selectOptionContainingText(SECTION_NAME);
 			waitSeconds(1);
 			BTN_importCsvNext_CSS.click();
 			BTN_importCsvLayoutMulti_CSS.click();
