@@ -5,10 +5,13 @@ import java.util.Locale;
 
 import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.WebDriverRunner;
+import org.openqa.selenium.support.events.WebDriverEventListener;
 
 public class Base extends Library {
 
 	public static String os = System.getProperty("os.name");
+
+	public static final String USER_DIRECTORY = System.getProperty("user.dir");
 
 	public static void driverSetUp() {
 		int timeout = 15;
@@ -21,6 +24,10 @@ public class Base extends Library {
 		sysProperties += "\njava.runtime.version" + System.getProperty("java.runtime.version");
 		sysProperties += "\nlocale default:" + Locale.getDefault();
 
+//		System.setProperty("webdriver.chrome.driver",
+//				USER_DIRECTORY + "\\src\\main\\resources\\driver\\chromedriver.exe");
+//
+//		Configuration.browserBinary = "C:\\TestRail\\testrailcsvimport\\src\\main\\java\\resources\\driver\\chromedriver.exe";
 		Configuration.browser = "chrome";
 		Configuration.driverManagerEnabled = true;
 		Configuration.reportsFolder = "test-result/reports";
@@ -31,6 +38,7 @@ public class Base extends Library {
 		Configuration.startMaximized = true;
 		Configuration.pollingInterval = 100;
 		Configuration.headless = false;
+//		WebDriverRunner.addListener(new WebDriverListener());
 		WebDriverRunner.addListener(new DriverEventListener());
 
 		sysProperties += "\nremote: " + Configuration.remote;

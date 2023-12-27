@@ -7,8 +7,10 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="TestRailImportApp" />
-        <module name="testrailcsvimport" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="testrailcsvimport" target="13" />
+    </bytecodeTargetLevel>
   </component>
 </project>

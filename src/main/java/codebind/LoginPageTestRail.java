@@ -1,5 +1,6 @@
 package codebind;
 
+import static codebind.Base.USER_DIRECTORY;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 
@@ -10,6 +11,8 @@ import javax.swing.*;
 import org.openqa.selenium.By;
 
 import com.codeborne.selenide.*;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
 
 public class LoginPageTestRail extends Library {
 
@@ -32,6 +35,7 @@ public class LoginPageTestRail extends Library {
 	public LoginPageTestRail login(String username, String password) {
 		try {
 			Configuration.baseUrl = "https://testrail.ppmd.siemens.net";
+
 			open();
 			waitSeconds(1);
 //			TXT_USERNAME_ID.sendKeys(username);

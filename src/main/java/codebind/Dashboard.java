@@ -44,8 +44,7 @@ public class Dashboard extends Library {
 	public Dashboard findProjectAndClick(String projectName) {
 		if (TABLE_PROJECT_CSS.first().isDisplayed()) {
 			try {
-				TABLE_PROJECT_CSS.filterBy(Condition.text(projectName)).first()
-						.$(".summary-links.text-secondary a:nth-child(4)").click();
+				TABLE_PROJECT_CSS.filterBy(Condition.text(projectName)).first().$(".summary-links.text-secondary a:nth-child(4)").click();
 			} catch (Exception e) {
 				Toolkit.getDefaultToolkit().beep();
 				JOptionPane.showMessageDialog(null, "Something went wrong !!!", "Error", -1);
@@ -195,6 +194,8 @@ public class Dashboard extends Library {
 					text="Yusuf Emre Şencan";
 				if(text.equals("Zehra Ate?"))
 					text="Zehra Ates";
+				if(text.equals("Zeynep Gözde ?anl?"))
+					text="Sanli, Zeynep Gozde";
 				boolean is = el.$(".field select").is(Condition.textCaseSensitive(text));
 				if (is) {
 					waitMiliSeconds(300);
