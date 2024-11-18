@@ -4,7 +4,4 @@ Test Rail CSV Import
 
 ## USAGE
 
-Download  [release](https://code.siemens.com/emre.sencan/testrailcsvimport/-/tree/master/release) for only executables.
-Please refer [User Manual](https://code.siemens.com/emre.sencan/testrailcsvimport/-/tree/master/documents/User_Manuel.docx).
-And please download [Sample CSV File](https://code.siemens.com/emre.sencan/testrailcsvimport/-/tree/master/documents/SampleCSVFile.csv)
-
+Please refer to the [User Manual]. Also, please download the [Sample CSV File].
