@@ -1,9 +1,5 @@
 package codebind;
 
-import static codebind.Base.USER_DIRECTORY;
-import static com.codeborne.selenide.Selenide.$;
-import static com.codeborne.selenide.Selenide.$$;
-
 import java.awt.*;
 
 import javax.swing.*;
@@ -11,8 +7,8 @@ import javax.swing.*;
 import org.openqa.selenium.By;
 
 import com.codeborne.selenide.*;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
+
+import static com.codeborne.selenide.Selenide.*;
 
 public class LoginPageTestRail extends Library {
 
@@ -29,6 +25,7 @@ public class LoginPageTestRail extends Library {
 	private LoginPageTestRail open() {
 		WebDriverRunner.clearBrowserCache();
 		Selenide.open("");
+		WebDriverRunner.getWebDriver().manage().window().maximize();
 		return this;
 	}
 
@@ -41,7 +38,7 @@ public class LoginPageTestRail extends Library {
 //			TXT_USERNAME_ID.sendKeys(username);
 //			TXT_PASSWWORD_ID.sendKeys(password);
 //			BTN_LOGIN_ID.click();
-			SINGLESIGNON.click();
+//			SINGLESIGNON.click();
 			if(ERROR_MSG.isDisplayed()){
 				Toolkit.getDefaultToolkit().beep();
 				JOptionPane.showMessageDialog(null,

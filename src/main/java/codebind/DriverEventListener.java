@@ -10,8 +10,9 @@ import org.openqa.selenium.OutputType;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.events.WebDriverEventListener;
+import org.openqa.selenium.support.events.WebDriverListener;
 
-public class DriverEventListener implements WebDriverEventListener {
+public class DriverEventListener implements WebDriverEventListener, WebDriverListener {
 
 	private static final boolean log = true;
 
@@ -81,7 +82,7 @@ public class DriverEventListener implements WebDriverEventListener {
 		 * By loadingLocator = By.cssSelector("div[style*='display: block;'] .loading");
 		 * long timeout = Configuration.timeout / 1000;
 		 */
-		waitMiliSeconds(150);
+		waitMiliSeconds(250);
 //		waitForLoadingJS(driver,120);
 		return;
 
@@ -90,7 +91,7 @@ public class DriverEventListener implements WebDriverEventListener {
 	@Override
 	public void afterFindBy(By by, WebElement element, WebDriver driver) {
 //		waitForLoadingJS(driver,120);
-		waitMiliSeconds(150);
+		waitMiliSeconds(250);
 		if (log) {
 			Timestamp timestamp = new Timestamp(System.currentTimeMillis());
 			System.out.println(timestamp + "    found element: " + by.toString());
@@ -105,7 +106,7 @@ public class DriverEventListener implements WebDriverEventListener {
 	@Override
 	public void afterClickOn(WebElement element, WebDriver driver) {
 //		waitForLoadingJS(driver,120);
-		waitMiliSeconds(150);
+		waitMiliSeconds(250);
 		if (log) {
 			Timestamp timestamp = new Timestamp(System.currentTimeMillis());
 			System.out.println(timestamp + "    clicked: " + element.toString());

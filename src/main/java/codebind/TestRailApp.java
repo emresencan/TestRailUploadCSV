@@ -307,9 +307,11 @@ public class TestRailApp extends Base implements ActionListener {
 							sectionsName = sections();
 							section.removeAllItems();
 							section.addItem("");
+							section.addItem("Functional Tests");
 							for (String text : sectionsName) {
 								section.addItem(text);
 							}
+							section.addItem("Non Functional Tests");
 							section.setActionCommand("true");
 						}
 					} catch (Exception ex) {

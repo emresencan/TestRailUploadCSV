@@ -5,10 +5,8 @@ import static codebind.TestRailApp.SUIT_NAME;
 import static com.codeborne.selenide.Selenide.*;
 
 import java.awt.*;
-import java.util.ArrayList;
+import java.util.*;
 import java.util.List;
-import java.util.ListIterator;
-import java.util.NoSuchElementException;
 
 import javax.swing.*;
 
@@ -16,6 +14,7 @@ import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
 import com.codeborne.selenide.WebDriverRunner;
+import org.testng.ITestResult;
 
 public class Dashboard extends Library {
 
@@ -71,12 +70,13 @@ public class Dashboard extends Library {
 	public List<String> findProjects() {
 		List<String> names = null;
 		try {
-			ListIterator<SelenideElement> elemenet = null;
+			Iterator elemenet = null;
 			names = new ArrayList<String>();
-			elemenet = TABLE_PROJECTNAMES_CSS.listIterator();
+			elemenet = TABLE_PROJECTNAMES_CSS.iterator();
 
 			while (elemenet.hasNext()) {
-				names.add(elemenet.next().getText());
+				SelenideElement el = (SelenideElement) elemenet.next();
+				names.add(el.getText());
 			}
 		} catch (Exception e) {
 			Toolkit.getDefaultToolkit().beep();
@@ -89,12 +89,13 @@ public class Dashboard extends Library {
 	public List<String> findTestSuits() {
 		List<String> names = null;
 		try {
-			ListIterator<SelenideElement> elemenet = null;
+			Iterator elemenet = null;
 			names = new ArrayList<String>();
-			elemenet = TABLE_SUITNAMES_CSS.listIterator();
+			elemenet = TABLE_SUITNAMES_CSS.iterator();
 
 			while (elemenet.hasNext()) {
-				names.add(elemenet.next().getText());
+				SelenideElement el = (SelenideElement) elemenet.next();
+				names.add(el.getText());
 			}
 		} catch (Exception e) {
 			Toolkit.getDefaultToolkit().beep();
@@ -108,12 +109,13 @@ public class Dashboard extends Library {
 		waitSeconds(5);
 		List<String> names = null;
 		try {
-			ListIterator<SelenideElement> elemenet = null;
+			Iterator elemenet = null;
 			names = new ArrayList<String>();
-			elemenet = LIST_SECTIONSAMES_CSS.listIterator();
+			elemenet = LIST_SECTIONSAMES_CSS.iterator();
 
 			while (elemenet.hasNext()) {
-				String text = elemenet.next().getText();
+				SelenideElement el = (SelenideElement) elemenet.next();
+				String text = el.getText();
 
 				if(!text.equals(""))
 					names.add(text);
@@ -219,7 +221,7 @@ public class Dashboard extends Library {
 					text = "Steps (Expected Result)";
 				el.$(".field select").click();
 
-				boolean is = el.$(".field select").is(Condition.textCaseSensitive(text));
+				boolean is = el.$(".field select").is(Condition.innerText(text));
 				if (is) {
 					el.scrollIntoView(true);
 					el.$(".field select").shouldBe(Condition.visible).selectOption(text);
@@ -245,7 +247,7 @@ public class Dashboard extends Library {
 					text="Zehra Ates";
 				if(text.equals("Zeynep Gözde ?anl?"))
 					text="Sanli, Zeynep Gozde";
-				boolean is = el.$(".field select").is(Condition.textCaseSensitive(text));
+				boolean is = el.$(".field select").is(Condition.innerText(text));
 				if (is) {
 					waitMiliSeconds(300);
 					el.$(".field select").selectOption(text);
