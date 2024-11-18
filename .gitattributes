@@ -1,0 +1,2 @@
+release/TestRailImportApp.exe filter=lfs diff=lfs merge=lfs -text
+src/main filter=lfs diff=lfs merge=lfs -text
